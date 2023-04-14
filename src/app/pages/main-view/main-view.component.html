@@ -15,7 +15,7 @@
 
         <!-- Creating the Board Bar -->
         <div class="board-bar">
-            <p class = "board-name">Board Name</p>
+            <p class = "board-name">{{ board.name }}</p>
         </div>
         <!-- Creating the Board Bar -->
 
@@ -23,55 +23,34 @@
         <div class="board-wrapper">
 
             <!-- Creating Space for adding all Columns -->
-            <div class="board-columns">
+            <div class="board-columns" cdkDropListGroup>
 
                 <!-- Creating Column 1 -->
-                <div class="board-column">
+                <div class="board-column" *ngFor="let column of board.columns">
 
                     <!-- Creating Title of a Column -->
-                    <div class="column-title">
-                        Ideas
+                    <div class="column-title" >
+                        {{ column.name }}
                     </div>
                     <!-- Creating Title of a Column -->
+
+                    <!-- Creating a container to contain all the tasks -->
+                    <div class="task-container"
+                    cdkDropList
+                    [cdkDropListData]="column.tasks"
+                    (cdkDropListDropped)="drop($event)">
+
+                        <!-- Creating a Task -->
+                        <div class="task" *ngFor="let task of column.tasks" cdkDrag>
+                            {{ task }}
+                        </div>
+                        <!-- Creating a Task -->
+
+                    </div>
+                    <!-- Creating a container to contain all the tasks -->
 
                 </div>
                 <!-- Creating Column 1 -->
-
-                <!-- Creating Column 2 -->
-                <div class="board-column">
-
-                    <!-- Creating Title of a Column -->
-                    <div class="column-title">
-                        Research
-                    </div>
-                    <!-- Creating Title of a Column -->
-                    
-                </div>
-                <!-- Creating Column 2 -->
-                
-                <!-- Creating Column 3 -->
-                <div class="board-column">
-
-                    <!-- Creating Title of a Column -->
-                    <div class="column-title">
-                        Todo
-                    </div>
-                    <!-- Creating Title of a Column -->
-                    
-                </div>
-                <!-- Creating Column 3 -->
-
-                <!-- Creating Column 4 -->
-                <div class="board-column">
-
-                    <!-- Creating Title of a Column -->
-                    <div class="column-title">
-                        Done
-                    </div>
-                    <!-- Creating Title of a Column -->
-                    
-                </div>
-                <!-- Creating Column 4 -->
 
             </div>
             <!-- Creating Space for adding all Columns -->
